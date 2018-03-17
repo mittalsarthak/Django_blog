@@ -43,7 +43,9 @@ def post_edit(request, pk):
 			return redirect('post_detail',pk=post.pk)
 	else:
 		form=PostForm()
-	return render(request,'blog/post_edit.html',{'form':form})
+
+	f=["title","text",] 	
+	return render(request,'blog/post_edit.html',{'form':form,'post':post,'f':f})
 
 @login_required
 def add_comment_to_post(request,pk):
@@ -56,7 +58,7 @@ def add_comment_to_post(request,pk):
 			comment.save()
 			return redirect('post_detail',pk=pk)
 	else:
-	    form =CommentForm()
+	    form =CommentForm()   
 	return render(request,'blog/add_comment_to_post.html',{'form':form})
 
 def post_draft_list(request):
